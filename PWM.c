@@ -60,36 +60,39 @@ void PWM_Cycle_Rate(uint32_t period_In_Cycles) {
 }
 
 void PWM_Write(uint32_t T_ON, uint32_t channel) {	
-	if(T_ON > 100) {
+	uint32_t trueValue;
+	if((int)T_ON > 100) {
 		T_ON = 100;
+	} else if((int)T_ON < 0) {
+		T_ON = 0;
 	}
 	
 	//Write a formula to calculate the match register for P30 (P1_2) pin.
-	T_ON = (PWM0 -> MR0 / 100) * T_ON;
+	trueValue = (uint32_t)((PWM0 -> MR0 * T_ON) / 100);
 	
 	//If T_ON equal to MR0, there will be 1 Cycle Dropout. In order to prevent this, we increase the T_ON value.
-	if (T_ON == PWM0->MR0) {
-		T_ON++;
+	if (trueValue == PWM0->MR0) {
+		trueValue++;
 	}
 	
 	switch(channel){
 		case 1:
-			PWM0 -> MR1 = T_ON;
+			PWM0 -> MR1 = trueValue;
 			break;
 		case 2:
-			PWM0 -> MR2 = T_ON;
+			PWM0 -> MR2 = trueValue;
 			break;
 		case 3:
-			PWM0 -> MR3 = T_ON;
+			PWM0 -> MR3 = trueValue;
 			break;
 		case 4:
-			PWM0 -> MR4 = T_ON;
+			PWM0 -> MR4 = trueValue;
 			break;
 		case 5:
-			PWM0 -> MR5 = T_ON;
+			PWM0 -> MR5 = trueValue;
 			break;
 		case 6:
-			PWM0 -> MR6 = T_ON;
+			PWM0 -> MR6 = trueValue;
 			break;
 	}
 	

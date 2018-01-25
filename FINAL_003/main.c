@@ -9,6 +9,8 @@
 #include "Library/SystemTickTimer.h"
 #include "Library/ADC.h"
 #include "Library/PINS.h"
+#include "Library/Serial.h"
+#include "Library/ESP8266.h"
 
 typedef enum {
 	BACKWARD = 0,
@@ -23,7 +25,17 @@ uint32_t diff;						// temp variable to keep difference between light sensor val
 uint8_t sign = 0;					// which light sensor value larger than the other
 
 uint8_t backoff = 0;			// 10-30 cm away case flag
-uint32_t led_threshold = 0x300;		// threshold to say light sensors give similar results
+uint32_t led_threshold = 250;		// threshold to say light sensors give similar results
+uint32_t turn_speed = 30;		// threshold to say light sensors give similar results
+
+uint32_t counter = 0;
+double average_distance = 0;
+int32_t distances[10];
+
+uint8_t scenario_select = 0;
+
+char* packet;
+
 
 void init() {
 	
@@ -33,10 +45,21 @@ void init() {
 	GPIO_DIR_Write(PORT0, TRIGGER_MASK, OUTPUT);		// Trigger should Output
 	GPIO_DIR_Write(PORT0, ECHO_MASK, INPUT);				// Echo should Analog Input
 	
-	GPIO_DIR_Write(PORT0, IN1_MASK, OUTPUT);		// In1
-	GPIO_DIR_Write(PORT0, IN2_MASK, OUTPUT);		// In2
+	GPIO_DIR_Write(PORT1, IN1_MASK, OUTPUT);		// In1
+	GPIO_DIR_Write(PORT1, IN2_MASK, OUTPUT);		// In2
 	GPIO_DIR_Write(PORT0, IN3_MASK, OUTPUT);		// In3
 	GPIO_DIR_Write(PORT0, IN4_MASK, OUTPUT);		// In4
+	
+	LED1_Init();
+	LED2_Init();
+	LED3_Init();
+	LED4_Init();
+	
+	LED1_Off();
+	LED2_Off();
+	LED3_Off();
+	LED4_Off();
+	
 	
 	SysTick_Init();
 	PWM_Init();
@@ -49,9 +72,12 @@ void init() {
 	Ultrasonic_Capture_Timer_Init();
 	Ulrasonic_Start_Trigger();
 	
+	Serial_Init();
+	//ESP8266_Init();
+	
 	ADC_Init();
 	ADC_Start();
-
+	
 	__enable_irq();
 }
 
@@ -59,8 +85,8 @@ void forward(){
 	/* left motor rotate cc -> IN1 = 0, IN2 = 1
 	 * right motor rotate cc -> IN3 = 0, IN4 = 1
 	*/
-	GPIO_PIN_Write(PORT0, IN1_MASK, LOW); 			// IN1 = 0
-	GPIO_PIN_Write(PORT0, IN2_MASK, HIGH); 		// IN2 = 1
+	GPIO_PIN_Write(PORT1, IN1_MASK, LOW); 			// IN1 = 0
+	GPIO_PIN_Write(PORT1, IN2_MASK, HIGH); 		// IN2 = 1
 	GPIO_PIN_Write(PORT0, IN3_MASK, LOW); 			// IN3 = 0
 	GPIO_PIN_Write(PORT0, IN4_MASK, HIGH); 		// IN4 = 1
 	
@@ -87,8 +113,8 @@ void backward(){
 	/* left motor rotate ccw -> IN1 = 1, IN2 = 0
 	 * right motor rotate ccw -> IN3 = 1, IN4 = 0
 	*/
-	GPIO_PIN_Write(PORT0, IN1_MASK, HIGH); 		// IN1 = 1
-	GPIO_PIN_Write(PORT0, IN2_MASK, LOW);		// IN2 = 0
+	GPIO_PIN_Write(PORT1, IN1_MASK, HIGH); 		// IN1 = 1
+	GPIO_PIN_Write(PORT1, IN2_MASK, LOW);		// IN2 = 0
 	GPIO_PIN_Write(PORT0, IN3_MASK, HIGH);		// IN3 = 1
 	GPIO_PIN_Write(PORT0, IN4_MASK, LOW);		// IN4 = 0
 	
@@ -112,11 +138,11 @@ void backward(){
 }
 
 void turn_ccw(){
-	/* left motor stop -> IN1 = 0, IN2 = 0
-	 * right motor cw -> IN3 = 0, IN4 = 1
+	/* left motor rotate ccw -> IN1 = 1, IN2 = 0
+	 * right motor rotate cw -> IN3 = 0, IN4 = 1
 	*/
-	GPIO_PIN_Write(PORT0, IN1_MASK, LOW);			// IN1 = 0
-	GPIO_PIN_Write(PORT0, IN2_MASK, LOW);			// IN2 = 0
+	GPIO_PIN_Write(PORT1, IN1_MASK, HIGH);			// IN1 = 1
+	GPIO_PIN_Write(PORT1, IN2_MASK, LOW);			// IN2 = 0
 	GPIO_PIN_Write(PORT0, IN3_MASK, LOW);			// IN3 = 0
 	GPIO_PIN_Write(PORT0, IN4_MASK, HIGH);			// IN4 = 1
 	
@@ -124,8 +150,8 @@ void turn_ccw(){
 	PWM_Cycle_Rate(500);
 	
 	// full gas -> ENA -> 100, ENB -> 100
-	PWM_Write(100, 5);
-	PWM_Write(100, 6);
+	PWM_Write((uint32_t)turn_speed, 5);
+	PWM_Write((uint32_t)turn_speed, 6);
 	
 	// car is moving, not stop
 	stop_flag = 0;
@@ -141,19 +167,19 @@ void turn_ccw(){
 
 void turn_cw(){
 	/* left motor rotate cw -> IN1 = 0, IN2 = 1
-	 * right motor stop -> IN3 = 0, IN4 = 0
+	 * right motor rotate ccw -> IN3 = 1, IN4 = 0
 	*/
-	GPIO_PIN_Write(PORT0, IN1_MASK, LOW); 		// IN1 = 0
-	GPIO_PIN_Write(PORT0, IN2_MASK, HIGH);			// IN2 = 1
-	GPIO_PIN_Write(PORT0, IN3_MASK, LOW);			// IN3 = 0
+	GPIO_PIN_Write(PORT1, IN1_MASK, LOW); 		// IN1 = 0
+	GPIO_PIN_Write(PORT1, IN2_MASK, HIGH);			// IN2 = 1
+	GPIO_PIN_Write(PORT0, IN3_MASK, HIGH);			// IN3 = 1
 	GPIO_PIN_Write(PORT0, IN4_MASK, LOW);			// IN4 = 0
 	
 	// to blink (2 times in a second)
 	PWM_Cycle_Rate(500);
 	
 	// full gas -> ENA -> 100, ENB -> 100
-	PWM_Write(100, 5);
-	PWM_Write(100, 6);
+	PWM_Write((uint32_t)turn_speed, 5);
+	PWM_Write((uint32_t)turn_speed, 6);
 	
 	// car is moving, not stop
 	stop_flag = 0;
@@ -181,6 +207,11 @@ void stop(){
 	PWM_Write(0, 2);
 	PWM_Write(0, 3);
 	PWM_Write(0, 4);
+	
+	LED1_On();
+	LED2_On();
+	LED3_On();
+	LED4_On();
 }
 
 // A/D Conversion start on Systick Time
@@ -195,9 +226,16 @@ void deep_power_down_on(){
 	__WFI();
 }
 
+// go to power down mode
+void power_down_on(){
+	SCR |= (1 << 2);
+	PCON |= (0x1);
+	__WFI();
+}
+
 // get trimpot value and scale the motor speed between 50% - 100% Duty Cycle according to this value
 void calc_speed(){
-	speed = 1.0*ADC_Trimpot*50/0xFFF + 50;
+	speed = 1.0*ADC_Trimpot*50/0xFFF + 40;
 }
 
 void update_speed(){
@@ -239,10 +277,130 @@ void joystick_controller(){
 	}
 }
 
+// to test serial, send message to bus channel
+void serialTest(){
+	serialTransmitData = "Hello World";
+	Serial_WriteData(*serialTransmitData++);
+	while(!serialTransmitCompleted);
+}
 
-uint32_t counter = 0;
-double average_distance = 0;
-int32_t distances[10];
+void WiFiConnection(){
+	ESP8266_sendCommand("AT+CWJAP=\"HWLAB\",\"12345678\"\r\n");
+	ESP8266_waitResponseEnd();
+	serialTransmitData = esp8266Response;
+	Serial_WriteData(*serialTransmitData++);
+	while(!serialTransmitCompleted);
+	
+	ESP8266_sendCommand("AT+CIFSR\r\n");			// Get IP
+	ESP8266_waitResponseEnd();
+	serialTransmitData = esp8266Response;
+	Serial_WriteData(*serialTransmitData++);
+	while(!serialTransmitCompleted);
+	
+	ESP8266_sendCommand("AT+CWMODE=1\r\n");		// WiFi Mode to Station
+	ESP8266_waitResponseEnd();
+	serialTransmitData = esp8266Response;
+	Serial_WriteData(*serialTransmitData++);
+	while(!serialTransmitCompleted);
+}
+
+
+// connect 192.168.0.100 IP and get coordinate message
+void TCPConnectionAndCommand(){
+	// TCP connecton with 192.168.0.100 IP
+	ESP8266_sendCommand("AT+CIPSTART=\"TCP\",\"192.168.0.100\",8080\r\n");
+	ESP8266_waitResponseEnd();
+	serialTransmitData = esp8266Response;
+	Serial_WriteData(*serialTransmitData++);
+	while(!serialTransmitCompleted);
+	
+	// send request to get coordinate message
+	packet = "GET /HWLAB_IoT/GetInformation?ID=3 HTTP/1.0\r\n\r\n";
+	ESP8266_sendCommand("AT+CIPSEND=47\r\n\r\n");				// send packet length first
+	ESP8266_waitResponseEnd();
+	ESP8266_sendCommand(packet);												// send GET request
+	ESP8266_waitResponseEnd();
+	serialTransmitData = esp8266Response;
+	Serial_WriteData(*serialTransmitData++);
+	while(!serialTransmitCompleted);
+}
+
+
+void scenario1(){
+	
+	// ULTRASONIC SENSOR Control Region
+	
+	// get last 10 distance from ultrasonic sensor and calculate mean
+	if(counter < 10){
+		distances[counter] = ultrasonicSensorDistance;
+		counter++;
+	} else {
+		counter = 0;
+		average_distance = mean(10, distances);
+	}
+	
+	if(average_distance > 8.0 && average_distance <= 15.0){
+		
+		// if there is a car front of my car -> stop to avoid crash
+		// if path finish, stop
+		// turn on board leds
+		
+		stop();
+		
+	} else if(average_distance > 15.0){
+		
+		if(stop_flag){
+			LED1_Off();
+			LED2_Off();
+			LED3_Off();
+			LED4_Off();
+		}
+		
+		//forward();
+	
+		// LIGHT SENSORS Control Region
+
+		// get absoulute difference between light sensors
+		diff = ADC_Left < ADC_Right ? (ADC_Right - ADC_Left) : (ADC_Left - ADC_Right);
+		
+		// which sensor value larger
+		sign = ADC_Left < ADC_Right;
+
+		if(diff < led_threshold){			// small difference means sensor's values similar
+			forward();
+		} else {
+			turn_speed = ((diff) / (720.0)) * 30;
+			if(sign){		// right larger than left -> turn clockwise
+				turn_ccw();
+			} else {		// left larger than right -> turn counter-clockwise
+				turn_cw();
+			}
+		}
+	}
+	
+}
+
+
+char *head, *tail;
+uint32_t start, end, i;
+char *coordinateMsg;
+
+void scenario2(){
+	WiFiConnection();
+	TCPConnectionAndCommand();
+	head = strstr(esp8266Response, "ID03");
+	tail = strstr(head, "\n");
+	start = head - esp8266Response;
+	end = tail - esp8266Response;
+	
+	strncpy(coordinateMsg, head, tail-head);
+	
+	
+}
+
+void scenario3(){
+}
+
 
 // When Joystick Up button is pressed, your robot should start to travel in forward direction.
 // When Joystick Center button is pressed, your robot should stop.
@@ -258,60 +416,45 @@ int32_t distances[10];
 // 		Front-Right and Back-Right LEDs should blink (2 times in a second) and the other LEDs should be turned off
 void controller(){
 	
-	calc_speed();		// calculate speed according to TrimpotValue
-	update_speed();
-	
-	if(Joystick_Up_Pressed()){
-		// forward direction
-		forward();
+	if(Joystick_Left_Pressed()){
+		scenario_select = 1;
+		calc_speed();		// calculate speed according to TrimpotValue
+		update_speed();
+		scenario1();
+	} else if(Joystick_Right_Pressed()){
+		scenario_select = 2;
+		calc_speed();		// calculate speed according to TrimpotValue
+		update_speed();
+		//scenario2();
+		serialTest();
+	} else if(Joystick_Down_Pressed()){
+		scenario_select = 3;
+		calc_speed();		// calculate speed according to TrimpotValue
+		update_speed();
+		//scenario3();
 	} else if(Joystick_Center_Pressed()){
 		// go to deep power down mode
-		deep_power_down_on();
-	} else if(!stop_flag){		// if the car is moving
-		
-		// ULTRASONIC SENSOR Control Region
-		
-		// get last 10 distance from ultrasonic sensor and calculate mean
-		if(counter < 10){
-			distances[counter] = ultrasonicSensorDistance;
-			counter++;
-		} else {
-			counter = 0;
-			average_distance = mean(10, distances);
+		scenario_select = 0;
+		stop();
+		power_down_on();
+	} else {
+		switch(scenario_select){
+			case 1:
+				scenario1();
+				//ultraTest();
+				break;
+			case 2:
+				//scenario2();
+				serialTest();
+				break;
+			case 3:
+				//scenario3();
+				break;
+			default:
+				;
 		}
-		
-		if(average_distance > 8.0 && average_distance < 12.0 && !backoff){		// obstacle close 10 cm to car -> go backward direction
-			backoff = 1;
-			backward();
-		} else if(average_distance < 30.0 && backoff){		// obstacle away from between 10-30 cm, continue to go backward
-			backward();
-		} else {			
-			
-			// LIGHT SENSORS Control Region
-			
-			forward();
-			backoff = 0;
-			
-			// get absoulute difference between light sensors
-			diff = ADC_Left < ADC_Right ? (ADC_Right - ADC_Left) : (ADC_Left - ADC_Right);
-			
-			// which sensor value larger
-			sign = ADC_Left < ADC_Right;
-			
-			if(diff < led_threshold){			// small difference means sensor's values similar
-				//forward();
-			} else {
-				if(sign){		// right larger than left -> turn clockwise
-					turn_cw();
-				} else {		// left larger than right -> turn counter-clockwise
-					turn_ccw();
-				}
-			}
-		}
-	
-		__WFI();
-		
 	}
+	
 }
 
 void update() {
@@ -322,13 +465,14 @@ void update() {
 	//LED_Sensor_Test();
 	//deep_power_down_on();
 	
-	controller();
+	//controller();
+	serialTest();
 	
 }
 
 int main() {
 	init();
-	stop();			// stop car on start
+	//stop();			// stop car on start
 	
 	while(1) {
 		update();

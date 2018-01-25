@@ -1,0 +1,731 @@
+Component: ARM Compiler 5.06 update 5 (build 528) Tool: armlink [4d35e2]
+
+==============================================================================
+
+Section Cross References
+
+    main.o(i.SysTick_Handler) refers to adc.o(i.ADC_Start) for ADC_Start
+    main.o(i.backward) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    main.o(i.backward) refers to pwm.o(i.PWM_Cycle_Rate) for PWM_Cycle_Rate
+    main.o(i.backward) refers to dfixui.o(.text) for __aeabi_d2uiz
+    main.o(i.backward) refers to pwm.o(i.PWM_Write) for PWM_Write
+    main.o(i.backward) refers to main.o(.data) for speed
+    main.o(i.calc_speed) refers to dfltui.o(.text) for __aeabi_ui2d
+    main.o(i.calc_speed) refers to dmul.o(.text) for __aeabi_dmul
+    main.o(i.calc_speed) refers to ddiv.o(.text) for __aeabi_ddiv
+    main.o(i.calc_speed) refers to dadd.o(.text) for __aeabi_dadd
+    main.o(i.calc_speed) refers to adc.o(.data) for ADC_Trimpot
+    main.o(i.calc_speed) refers to main.o(.data) for speed
+    main.o(i.controller) refers to main.o(i.calc_speed) for calc_speed
+    main.o(i.controller) refers to main.o(i.update_speed) for update_speed
+    main.o(i.controller) refers to joystick.o(i.Joystick_Up_Pressed) for Joystick_Up_Pressed
+    main.o(i.controller) refers to main.o(i.forward) for forward
+    main.o(i.controller) refers to joystick.o(i.Joystick_Center_Pressed) for Joystick_Center_Pressed
+    main.o(i.controller) refers to main.o(i.deep_power_down_on) for deep_power_down_on
+    main.o(i.controller) refers to main.o(i.mean) for mean
+    main.o(i.controller) refers to cdrcmple.o(.text) for __aeabi_cdrcmple
+    main.o(i.controller) refers to cdcmple.o(.text) for __aeabi_cdcmple
+    main.o(i.controller) refers to main.o(i.backward) for backward
+    main.o(i.controller) refers to main.o(i.turn_cw) for turn_cw
+    main.o(i.controller) refers to main.o(i.turn_ccw) for turn_ccw
+    main.o(i.controller) refers to main.o(.data) for stop_flag
+    main.o(i.controller) refers to ultrasonic.o(.data) for ultrasonicSensorDistance
+    main.o(i.controller) refers to main.o(.bss) for distances
+    main.o(i.controller) refers to adc.o(.data) for ADC_Left
+    main.o(i.forward) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    main.o(i.forward) refers to pwm.o(i.PWM_Cycle_Rate) for PWM_Cycle_Rate
+    main.o(i.forward) refers to dfixui.o(.text) for __aeabi_d2uiz
+    main.o(i.forward) refers to pwm.o(i.PWM_Write) for PWM_Write
+    main.o(i.forward) refers to main.o(.data) for speed
+    main.o(i.init) refers to gpio.o(i.GPIO_DIR_Write) for GPIO_DIR_Write
+    main.o(i.init) refers to systemticktimer.o(i.SysTick_Init) for SysTick_Init
+    main.o(i.init) refers to pwm.o(i.PWM_Init) for PWM_Init
+    main.o(i.init) refers to pll.o(i.PLL_Change_Configuration) for PLL_Change_Configuration
+    main.o(i.init) refers to joystick.o(i.Joystick_Init) for Joystick_Init
+    main.o(i.init) refers to ultrasonic.o(i.Ultrasonic_Trigger_Timer_Init) for Ultrasonic_Trigger_Timer_Init
+    main.o(i.init) refers to ultrasonic.o(i.Ultrasonic_Capture_Timer_Init) for Ultrasonic_Capture_Timer_Init
+    main.o(i.init) refers to ultrasonic.o(i.Ulrasonic_Start_Trigger) for Ulrasonic_Start_Trigger
+    main.o(i.init) refers to adc.o(i.ADC_Init) for ADC_Init
+    main.o(i.init) refers to adc.o(i.ADC_Start) for ADC_Start
+    main.o(i.joystick_controller) refers to joystick.o(i.Joystick_Up_Pressed) for Joystick_Up_Pressed
+    main.o(i.joystick_controller) refers to main.o(i.forward) for forward
+    main.o(i.joystick_controller) refers to joystick.o(i.Joystick_Center_Pressed) for Joystick_Center_Pressed
+    main.o(i.joystick_controller) refers to main.o(i.stop) for stop
+    main.o(i.joystick_controller) refers to joystick.o(i.Joystick_Down_Pressed) for Joystick_Down_Pressed
+    main.o(i.joystick_controller) refers to main.o(i.backward) for backward
+    main.o(i.joystick_controller) refers to joystick.o(i.Joystick_Left_Pressed) for Joystick_Left_Pressed
+    main.o(i.joystick_controller) refers to main.o(i.turn_ccw) for turn_ccw
+    main.o(i.joystick_controller) refers to joystick.o(i.Joystick_Right_Pressed) for Joystick_Right_Pressed
+    main.o(i.joystick_controller) refers to main.o(i.turn_cw) for turn_cw
+    main.o(i.main) refers to main.o(i.init) for init
+    main.o(i.main) refers to main.o(i.update) for update
+    main.o(i.mean) refers to dflti.o(.text) for __aeabi_i2d
+    main.o(i.mean) refers to ddiv.o(.text) for __aeabi_ddiv
+    main.o(i.stop) refers to pwm.o(i.PWM_Write) for PWM_Write
+    main.o(i.stop) refers to main.o(.data) for stop_flag
+    main.o(i.turn_ccw) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    main.o(i.turn_ccw) refers to pwm.o(i.PWM_Cycle_Rate) for PWM_Cycle_Rate
+    main.o(i.turn_ccw) refers to pwm.o(i.PWM_Write) for PWM_Write
+    main.o(i.turn_ccw) refers to main.o(.data) for stop_flag
+    main.o(i.turn_cw) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    main.o(i.turn_cw) refers to pwm.o(i.PWM_Cycle_Rate) for PWM_Cycle_Rate
+    main.o(i.turn_cw) refers to pwm.o(i.PWM_Write) for PWM_Write
+    main.o(i.turn_cw) refers to main.o(.data) for stop_flag
+    main.o(i.update) refers to main.o(i.controller) for controller
+    main.o(i.update_speed) refers to dfixui.o(.text) for __aeabi_d2uiz
+    main.o(i.update_speed) refers to pwm.o(i.PWM_Write) for PWM_Write
+    main.o(i.update_speed) refers to main.o(.data) for speed
+    pwm.o(i.PWM_Init) refers to pwm.o(i.PWM_Write) for PWM_Write
+    joystick.o(i.Joystick_Center_Pressed) refers to gpio.o(i.GPIO_PIN_Read) for GPIO_PIN_Read
+    joystick.o(i.Joystick_Down_Pressed) refers to gpio.o(i.GPIO_PIN_Read) for GPIO_PIN_Read
+    joystick.o(i.Joystick_Init) refers to gpio.o(i.GPIO_DIR_Write) for GPIO_DIR_Write
+    joystick.o(i.Joystick_Left_Pressed) refers to gpio.o(i.GPIO_PIN_Read) for GPIO_PIN_Read
+    joystick.o(i.Joystick_Right_Pressed) refers to gpio.o(i.GPIO_PIN_Read) for GPIO_PIN_Read
+    joystick.o(i.Joystick_Up_Pressed) refers to gpio.o(i.GPIO_PIN_Read) for GPIO_PIN_Read
+    led.o(i.LED1_Init) refers to gpio.o(i.GPIO_DIR_Write) for GPIO_DIR_Write
+    led.o(i.LED1_Off) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    led.o(i.LED1_On) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    led.o(i.LED2_Init) refers to gpio.o(i.GPIO_DIR_Write) for GPIO_DIR_Write
+    led.o(i.LED2_Off) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    led.o(i.LED2_On) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    led.o(i.LED3_Init) refers to gpio.o(i.GPIO_DIR_Write) for GPIO_DIR_Write
+    led.o(i.LED3_Off) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    led.o(i.LED3_On) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    led.o(i.LED4_Init) refers to gpio.o(i.GPIO_DIR_Write) for GPIO_DIR_Write
+    led.o(i.LED4_Off) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    led.o(i.LED4_On) refers to gpio.o(i.GPIO_PIN_Write) for GPIO_PIN_Write
+    pll.o(i.PLL_Change_Configuration) refers to pll.o(i.PLL_Init) for PLL_Init
+    pll.o(i.PLL_Change_Configuration) refers to pll.o(i.PLL_Disable) for PLL_Disable
+    pll.o(i.PLL_Change_Configuration) refers to pll.o(i.PLL_Feed) for PLL_Feed
+    pll.o(i.PLL_Change_Configuration) refers to pll.o(i.PLL_Change_Source) for PLL_Change_Source
+    pll.o(i.PLL_Change_Configuration) refers to pll.o(i.PLL_Change_Frequency) for PLL_Change_Frequency
+    pll.o(i.PLL_Change_Configuration) refers to pll.o(i.PLL_Enable) for PLL_Enable
+    pll.o(i.PLL_Change_Configuration) refers to pll.o(i.PLL_Check_State) for PLL_Check_State
+    pll.o(i.PLL_Change_Configuration) refers to pll.o(i.PLL_Start) for PLL_Start
+    ultrasonic.o(i.TIMER2_IRQHandler) refers to ultrasonic.o(i.__NVIC_ClearPendingIRQ) for __NVIC_ClearPendingIRQ
+    ultrasonic.o(i.TIMER2_IRQHandler) refers to ultrasonic.o(i.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
+    ultrasonic.o(i.TIMER2_IRQHandler) refers to ultrasonic.o(.data) for isUltrasonicSensorTriggerEnded
+    ultrasonic.o(i.TIMER3_IRQHandler) refers to ultrasonic.o(i.__NVIC_ClearPendingIRQ) for __NVIC_ClearPendingIRQ
+    ultrasonic.o(i.TIMER3_IRQHandler) refers to ultrasonic.o(.data) for ultrasonicSensorEdgeCount
+    ultrasonic.o(i.Ultrasonic_Trigger_Timer_Init) refers to ultrasonic.o(i.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
+    ultrasonic.o(i.Ultrasonic_Trigger_Timer_Init) refers to ultrasonic.o(i.__NVIC_ClearPendingIRQ) for __NVIC_ClearPendingIRQ
+    adc.o(i.ADC_IRQHandler) refers to adc.o(i.ADC_Stop) for ADC_Stop
+    adc.o(i.ADC_IRQHandler) refers to adc.o(.data) for ADC_Right
+    adc.o(i.ADC_Init) refers to adc.o(i.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
+    adc.o(i.ADC_Start) refers to adc.o(i.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
+    startup_lpc407x_8x_177x_8x.o(RESET) refers to startup_lpc407x_8x_177x_8x.o(STACK) for __initial_sp
+    startup_lpc407x_8x_177x_8x.o(RESET) refers to startup_lpc407x_8x_177x_8x.o(.text) for Reset_Handler
+    startup_lpc407x_8x_177x_8x.o(RESET) refers to main.o(i.SysTick_Handler) for SysTick_Handler
+    startup_lpc407x_8x_177x_8x.o(RESET) refers to ultrasonic.o(i.TIMER2_IRQHandler) for TIMER2_IRQHandler
+    startup_lpc407x_8x_177x_8x.o(RESET) refers to ultrasonic.o(i.TIMER3_IRQHandler) for TIMER3_IRQHandler
+    startup_lpc407x_8x_177x_8x.o(RESET) refers to adc.o(i.ADC_IRQHandler) for ADC_IRQHandler
+    startup_lpc407x_8x_177x_8x.o(.text) refers to system_lpc407x_8x_177x_8x.o(i.SystemInit) for SystemInit
+    startup_lpc407x_8x_177x_8x.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    system_lpc407x_8x_177x_8x.o(i.SystemCoreClockUpdate) refers to system_lpc407x_8x_177x_8x.o(.data) for SystemCoreClock
+    system_lpc407x_8x_177x_8x.o(i.SystemInit) refers to system_lpc407x_8x_177x_8x.o(i.fpu_init) for fpu_init
+    system_lpc407x_8x_177x_8x.o(i.SystemInit) refers to system_lpc407x_8x_177x_8x.o(i.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry8b.o(.ARM.Collect$$$$0000000A) for _main_cpp_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry9a.o(.ARM.Collect$$$$0000000B) for _main_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry5.o(.ARM.Collect$$$$00000004) for _main_scatterload
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry2.o(.ARM.Collect$$$$00000001) for _main_stk
+    dadd.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dadd.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    dadd.o(.text) refers to llsshr.o(.text) for __aeabi_lasr
+    dadd.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    dmul.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dmul.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    ddiv.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    ddiv.o(.text) refers to depilogue.o(.text) for _double_round
+    dflti.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dflti.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    dfltui.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dfltui.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    dfixui.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dfixui.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+    cdcmple.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    cdrcmple.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
+    entry2.o(.ARM.Collect$$$$00002712) refers to startup_lpc407x_8x_177x_8x.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to startup_lpc407x_8x_177x_8x.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    entry5.o(.ARM.Collect$$$$00000004) refers to init.o(.text) for __scatterload
+    entry9a.o(.ARM.Collect$$$$0000000B) refers to main.o(i.main) for main
+    entry9b.o(.ARM.Collect$$$$0000000C) refers to main.o(i.main) for main
+    depilogue.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    depilogue.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+    init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing main.o(.rev16_text), (4 bytes).
+    Removing main.o(.revsh_text), (4 bytes).
+    Removing main.o(.rrx_text), (6 bytes).
+    Removing main.o(i.joystick_controller), (62 bytes).
+    Removing main.o(i.stop), (64 bytes).
+    Removing pwm.o(.rev16_text), (4 bytes).
+    Removing pwm.o(.revsh_text), (4 bytes).
+    Removing pwm.o(.rrx_text), (6 bytes).
+    Removing gpio.o(.rev16_text), (4 bytes).
+    Removing gpio.o(.revsh_text), (4 bytes).
+    Removing gpio.o(.rrx_text), (6 bytes).
+    Removing joystick.o(.rev16_text), (4 bytes).
+    Removing joystick.o(.revsh_text), (4 bytes).
+    Removing joystick.o(.rrx_text), (6 bytes).
+    Removing joystick.o(i.Joystick_Down_Pressed), (24 bytes).
+    Removing joystick.o(i.Joystick_Left_Pressed), (24 bytes).
+    Removing joystick.o(i.Joystick_Right_Pressed), (24 bytes).
+    Removing led.o(.rev16_text), (4 bytes).
+    Removing led.o(.revsh_text), (4 bytes).
+    Removing led.o(.rrx_text), (6 bytes).
+    Removing led.o(i.LED1_Init), (20 bytes).
+    Removing led.o(i.LED1_Off), (20 bytes).
+    Removing led.o(i.LED1_On), (20 bytes).
+    Removing led.o(i.LED2_Init), (20 bytes).
+    Removing led.o(i.LED2_Off), (20 bytes).
+    Removing led.o(i.LED2_On), (20 bytes).
+    Removing led.o(i.LED3_Init), (20 bytes).
+    Removing led.o(i.LED3_Off), (20 bytes).
+    Removing led.o(i.LED3_On), (20 bytes).
+    Removing led.o(i.LED4_Init), (20 bytes).
+    Removing led.o(i.LED4_Off), (20 bytes).
+    Removing led.o(i.LED4_On), (20 bytes).
+    Removing pll.o(.rev16_text), (4 bytes).
+    Removing pll.o(.revsh_text), (4 bytes).
+    Removing pll.o(.rrx_text), (6 bytes).
+    Removing timer.o(.rev16_text), (4 bytes).
+    Removing timer.o(.revsh_text), (4 bytes).
+    Removing timer.o(.rrx_text), (6 bytes).
+    Removing ultrasonic.o(.rev16_text), (4 bytes).
+    Removing ultrasonic.o(.revsh_text), (4 bytes).
+    Removing ultrasonic.o(.rrx_text), (6 bytes).
+    Removing adc.o(.rev16_text), (4 bytes).
+    Removing adc.o(.revsh_text), (4 bytes).
+    Removing adc.o(.rrx_text), (6 bytes).
+    Removing systemticktimer.o(.rev16_text), (4 bytes).
+    Removing systemticktimer.o(.revsh_text), (4 bytes).
+    Removing systemticktimer.o(.rrx_text), (6 bytes).
+    Removing startup_lpc407x_8x_177x_8x.o(HEAP), (0 bytes).
+    Removing system_lpc407x_8x_177x_8x.o(.rev16_text), (4 bytes).
+    Removing system_lpc407x_8x_177x_8x.o(.revsh_text), (4 bytes).
+    Removing system_lpc407x_8x_177x_8x.o(.rrx_text), (6 bytes).
+
+51 unused section(s) (total 592 bytes) removed from the image.
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    RESET                                    0x00000000   Section      228  startup_lpc407x_8x_177x_8x.o(RESET)
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
+    ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
+    ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
+    ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
+    ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixui.o ABSOLUTE
+    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dfltui.o ABSOLUTE
+    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dflti.o ABSOLUTE
+    ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
+    Library\ADC.c                            0x00000000   Number         0  adc.o ABSOLUTE
+    Library\GPIO.c                           0x00000000   Number         0  gpio.o ABSOLUTE
+    Library\Joystick.c                       0x00000000   Number         0  joystick.o ABSOLUTE
+    Library\LED.c                            0x00000000   Number         0  led.o ABSOLUTE
+    Library\PLL.c                            0x00000000   Number         0  pll.o ABSOLUTE
+    Library\PWM.c                            0x00000000   Number         0  pwm.o ABSOLUTE
+    Library\SystemTickTimer.c                0x00000000   Number         0  systemticktimer.o ABSOLUTE
+    Library\Timer.c                          0x00000000   Number         0  timer.o ABSOLUTE
+    Library\Ultrasonic.c                     0x00000000   Number         0  ultrasonic.o ABSOLUTE
+    Library\\ADC.c                           0x00000000   Number         0  adc.o ABSOLUTE
+    Library\\GPIO.c                          0x00000000   Number         0  gpio.o ABSOLUTE
+    Library\\Joystick.c                      0x00000000   Number         0  joystick.o ABSOLUTE
+    Library\\LED.c                           0x00000000   Number         0  led.o ABSOLUTE
+    Library\\PLL.c                           0x00000000   Number         0  pll.o ABSOLUTE
+    Library\\PWM.c                           0x00000000   Number         0  pwm.o ABSOLUTE
+    Library\\SystemTickTimer.c               0x00000000   Number         0  systemticktimer.o ABSOLUTE
+    Library\\Timer.c                         0x00000000   Number         0  timer.o ABSOLUTE
+    Library\\Ultrasonic.c                    0x00000000   Number         0  ultrasonic.o ABSOLUTE
+    RTE\Device\LPC4088FET208\startup_LPC407x_8x_177x_8x.s 0x00000000   Number         0  startup_lpc407x_8x_177x_8x.o ABSOLUTE
+    RTE\Device\LPC4088FET208\system_LPC407x_8x_177x_8x.c 0x00000000   Number         0  system_lpc407x_8x_177x_8x.o ABSOLUTE
+    RTE\\Device\\LPC4088FET208\\system_LPC407x_8x_177x_8x.c 0x00000000   Number         0  system_lpc407x_8x_177x_8x.o ABSOLUTE
+    cdcmple.s                                0x00000000   Number         0  cdcmple.o ABSOLUTE
+    cdrcmple.s                               0x00000000   Number         0  cdrcmple.o ABSOLUTE
+    dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    handlers.s                               0x00000000   Number         0  handlers.o ABSOLUTE
+    init.s                                   0x00000000   Number         0  init.o ABSOLUTE
+    main.c                                   0x00000000   Number         0  main.o ABSOLUTE
+    main.c                                   0x00000000   Number         0  main.o ABSOLUTE
+    .ARM.Collect$$$$00000000                 0x000000e4   Section        0  entry.o(.ARM.Collect$$$$00000000)
+    .ARM.Collect$$$$00000001                 0x000000e4   Section        4  entry2.o(.ARM.Collect$$$$00000001)
+    .ARM.Collect$$$$00000004                 0x000000e8   Section        4  entry5.o(.ARM.Collect$$$$00000004)
+    .ARM.Collect$$$$00000008                 0x000000ec   Section        0  entry7b.o(.ARM.Collect$$$$00000008)
+    .ARM.Collect$$$$0000000A                 0x000000ec   Section        0  entry8b.o(.ARM.Collect$$$$0000000A)
+    .ARM.Collect$$$$0000000B                 0x000000ec   Section        8  entry9a.o(.ARM.Collect$$$$0000000B)
+    .ARM.Collect$$$$0000000D                 0x000000f4   Section        0  entry10a.o(.ARM.Collect$$$$0000000D)
+    .ARM.Collect$$$$0000000F                 0x000000f4   Section        0  entry11a.o(.ARM.Collect$$$$0000000F)
+    .ARM.Collect$$$$00002712                 0x000000f4   Section        4  entry2.o(.ARM.Collect$$$$00002712)
+    __lit__00000000                          0x000000f4   Data           4  entry2.o(.ARM.Collect$$$$00002712)
+    .text                                    0x000000f8   Section       36  startup_lpc407x_8x_177x_8x.o(.text)
+    $v0                                      0x000000f8   Number         0  startup_lpc407x_8x_177x_8x.o(.text)
+    .text                                    0x0000011c   Section        0  dadd.o(.text)
+    .text                                    0x0000026a   Section        0  dflti.o(.text)
+    .text                                    0x0000028c   Section        0  dfltui.o(.text)
+    .text                                    0x000002a6   Section        0  dfixui.o(.text)
+    .text                                    0x000002d8   Section        0  llshl.o(.text)
+    .text                                    0x000002f6   Section        0  iusefp.o(.text)
+    i.__scatterload_null                     0x000002f6   Section        2  handlers.o(i.__scatterload_null)
+    .ARM.__at_0x02FC                         0x000002fc   Section        4  startup_lpc407x_8x_177x_8x.o(.ARM.__at_0x02FC)
+    .text                                    0x00000300   Section        0  dmul.o(.text)
+    .text                                    0x000003e4   Section        0  ddiv.o(.text)
+    .text                                    0x000004c4   Section       48  cdcmple.o(.text)
+    .text                                    0x000004f4   Section       48  cdrcmple.o(.text)
+    .text                                    0x00000524   Section        0  llushr.o(.text)
+    .text                                    0x00000544   Section        0  llsshr.o(.text)
+    .text                                    0x00000568   Section        0  depilogue.o(.text)
+    .text                                    0x00000624   Section       36  init.o(.text)
+    i.ADC_IRQHandler                         0x00000648   Section        0  adc.o(i.ADC_IRQHandler)
+    i.ADC_Init                               0x000006a8   Section        0  adc.o(i.ADC_Init)
+    i.ADC_Start                              0x00000788   Section        0  adc.o(i.ADC_Start)
+    i.ADC_Stop                               0x000007b0   Section        0  adc.o(i.ADC_Stop)
+    i.GPIO_DIR_Write                         0x000007f0   Section        0  gpio.o(i.GPIO_DIR_Write)
+    i.GPIO_PIN_Read                          0x00000802   Section        0  gpio.o(i.GPIO_PIN_Read)
+    i.GPIO_PIN_Write                         0x0000080c   Section        0  gpio.o(i.GPIO_PIN_Write)
+    i.Joystick_Center_Pressed                0x00000820   Section        0  joystick.o(i.Joystick_Center_Pressed)
+    i.Joystick_Init                          0x00000838   Section        0  joystick.o(i.Joystick_Init)
+    i.Joystick_Up_Pressed                    0x00000874   Section        0  joystick.o(i.Joystick_Up_Pressed)
+    i.PLL_Change_Configuration               0x0000088c   Section        0  pll.o(i.PLL_Change_Configuration)
+    i.PLL_Change_Frequency                   0x000008b4   Section        0  pll.o(i.PLL_Change_Frequency)
+    i.PLL_Change_Source                      0x000008d8   Section        0  pll.o(i.PLL_Change_Source)
+    i.PLL_Check_State                        0x000008f0   Section        0  pll.o(i.PLL_Check_State)
+    i.PLL_Disable                            0x00000904   Section        0  pll.o(i.PLL_Disable)
+    i.PLL_Enable                             0x0000091c   Section        0  pll.o(i.PLL_Enable)
+    i.PLL_Feed                               0x00000934   Section        0  pll.o(i.PLL_Feed)
+    i.PLL_Init                               0x0000094c   Section        0  pll.o(i.PLL_Init)
+    i.PLL_Start                              0x00000978   Section        0  pll.o(i.PLL_Start)
+    i.PWM_Cycle_Rate                         0x000009b4   Section        0  pwm.o(i.PWM_Cycle_Rate)
+    i.PWM_Init                               0x000009d4   Section        0  pwm.o(i.PWM_Init)
+    i.PWM_Write                              0x00000b14   Section        0  pwm.o(i.PWM_Write)
+    i.SysTick_Handler                        0x00000b84   Section        0  main.o(i.SysTick_Handler)
+    i.SysTick_Init                           0x00000b8c   Section        0  systemticktimer.o(i.SysTick_Init)
+    i.SystemCoreClockUpdate                  0x00000bc0   Section        0  system_lpc407x_8x_177x_8x.o(i.SystemCoreClockUpdate)
+    i.SystemInit                             0x00000e94   Section        0  system_lpc407x_8x_177x_8x.o(i.SystemInit)
+    i.TIMER2_IRQHandler                      0x00000f80   Section        0  ultrasonic.o(i.TIMER2_IRQHandler)
+    i.TIMER3_IRQHandler                      0x00000fd0   Section        0  ultrasonic.o(i.TIMER3_IRQHandler)
+    i.Ulrasonic_Start_Trigger                0x0000108c   Section        0  ultrasonic.o(i.Ulrasonic_Start_Trigger)
+    i.Ultrasonic_Capture_Timer_Init          0x000010b8   Section        0  ultrasonic.o(i.Ultrasonic_Capture_Timer_Init)
+    i.Ultrasonic_Trigger_Timer_Init          0x00001128   Section        0  ultrasonic.o(i.Ultrasonic_Trigger_Timer_Init)
+    i.__NVIC_ClearPendingIRQ                 0x000011bc   Section        0  ultrasonic.o(i.__NVIC_ClearPendingIRQ)
+    __NVIC_ClearPendingIRQ                   0x000011bd   Thumb Code    22  ultrasonic.o(i.__NVIC_ClearPendingIRQ)
+    i.__NVIC_EnableIRQ                       0x000011d8   Section        0  ultrasonic.o(i.__NVIC_EnableIRQ)
+    __NVIC_EnableIRQ                         0x000011d9   Thumb Code    26  ultrasonic.o(i.__NVIC_EnableIRQ)
+    i.__NVIC_EnableIRQ                       0x000011f2   Section        0  adc.o(i.__NVIC_EnableIRQ)
+    __NVIC_EnableIRQ                         0x000011f3   Thumb Code    26  adc.o(i.__NVIC_EnableIRQ)
+    i.__scatterload_copy                     0x0000120c   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_zeroinit                 0x0000121a   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.backward                               0x00001228   Section        0  main.o(i.backward)
+    i.calc_speed                             0x000012bc   Section        0  main.o(i.calc_speed)
+    i.controller                             0x00001334   Section        0  main.o(i.controller)
+    i.deep_power_down_on                     0x000014a4   Section        0  main.o(i.deep_power_down_on)
+    i.forward                                0x000014cc   Section        0  main.o(i.forward)
+    i.fpu_init                               0x0000155c   Section        0  system_lpc407x_8x_177x_8x.o(i.fpu_init)
+    i.init                                   0x000015ac   Section        0  main.o(i.init)
+    i.main                                   0x00001630   Section        0  main.o(i.main)
+    i.mean                                   0x0000163c   Section        0  main.o(i.mean)
+    i.turn_ccw                               0x00001684   Section        0  main.o(i.turn_ccw)
+    i.turn_cw                                0x000016f8   Section        0  main.o(i.turn_cw)
+    i.update                                 0x0000176c   Section        0  main.o(i.update)
+    i.update_speed                           0x00001774   Section        0  main.o(i.update_speed)
+    .data                                    0x10000000   Section       40  main.o(.data)
+    .data                                    0x10000028   Section       24  ultrasonic.o(.data)
+    .data                                    0x10000040   Section       12  adc.o(.data)
+    .data                                    0x1000004c   Section       16  system_lpc407x_8x_177x_8x.o(.data)
+    .bss                                     0x1000005c   Section       40  main.o(.bss)
+    STACK                                    0x10000088   Section     1024  startup_lpc407x_8x_177x_8x.o(STACK)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv4$E$P$D$K$B$S$7EM$VFPi3$EXTD16$VFPS$VFMA$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OSPACE$ROPI$EBA8$MICROLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __ARM_use_no_argv                        0x00000000   Number         0  main.o ABSOLUTE
+    __Vectors                                0x00000000   Data           4  startup_lpc407x_8x_177x_8x.o(RESET)
+    __cpp_initialize__aeabi_                  - Undefined Weak Reference
+    __cxa_finalize                            - Undefined Weak Reference
+    __decompress                              - Undefined Weak Reference
+    _clock_init                               - Undefined Weak Reference
+    _microlib_exit                            - Undefined Weak Reference
+    __main                                   0x000000e5   Thumb Code     0  entry.o(.ARM.Collect$$$$00000000)
+    _main_stk                                0x000000e5   Thumb Code     0  entry2.o(.ARM.Collect$$$$00000001)
+    _main_scatterload                        0x000000e9   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    __main_after_scatterload                 0x000000ed   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    _main_clock                              0x000000ed   Thumb Code     0  entry7b.o(.ARM.Collect$$$$00000008)
+    _main_cpp_init                           0x000000ed   Thumb Code     0  entry8b.o(.ARM.Collect$$$$0000000A)
+    _main_init                               0x000000ed   Thumb Code     0  entry9a.o(.ARM.Collect$$$$0000000B)
+    __rt_final_cpp                           0x000000f5   Thumb Code     0  entry10a.o(.ARM.Collect$$$$0000000D)
+    __rt_final_exit                          0x000000f5   Thumb Code     0  entry11a.o(.ARM.Collect$$$$0000000F)
+    Reset_Handler                            0x000000f9   Thumb Code     8  startup_lpc407x_8x_177x_8x.o(.text)
+    NMI_Handler                              0x00000101   Thumb Code     2  startup_lpc407x_8x_177x_8x.o(.text)
+    HardFault_Handler                        0x00000103   Thumb Code     2  startup_lpc407x_8x_177x_8x.o(.text)
+    MemManage_Handler                        0x00000105   Thumb Code     2  startup_lpc407x_8x_177x_8x.o(.text)
+    BusFault_Handler                         0x00000107   Thumb Code     2  startup_lpc407x_8x_177x_8x.o(.text)
+    UsageFault_Handler                       0x00000109   Thumb Code     2  startup_lpc407x_8x_177x_8x.o(.text)
+    SVC_Handler                              0x0000010b   Thumb Code     2  startup_lpc407x_8x_177x_8x.o(.text)
+    DebugMon_Handler                         0x0000010d   Thumb Code     2  startup_lpc407x_8x_177x_8x.o(.text)
+    PendSV_Handler                           0x0000010f   Thumb Code     2  startup_lpc407x_8x_177x_8x.o(.text)
+    BOD_IRQHandler                           0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    CANActivity_IRQHandler                   0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    CAN_IRQHandler                           0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    DMA_IRQHandler                           0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    EEPROM_IRQHandler                        0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    EINT0_IRQHandler                         0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    EINT1_IRQHandler                         0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    EINT2_IRQHandler                         0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    EINT3_IRQHandler                         0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    ENET_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    GPIO_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    I2C0_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    I2C1_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    I2C2_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    I2S_IRQHandler                           0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    LCD_IRQHandler                           0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    MCI_IRQHandler                           0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    MCPWM_IRQHandler                         0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    PLL0_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    PLL1_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    PWM0_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    PWM1_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    QEI_IRQHandler                           0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    RTC_IRQHandler                           0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    SSP0_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    SSP1_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    SSP2_IRQHandler                          0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    TIMER0_IRQHandler                        0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    TIMER1_IRQHandler                        0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    UART0_IRQHandler                         0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    UART1_IRQHandler                         0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    UART2_IRQHandler                         0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    UART3_IRQHandler                         0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    UART4_IRQHandler                         0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    USBActivity_IRQHandler                   0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    USB_IRQHandler                           0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    WDT_IRQHandler                           0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
+    __aeabi_dadd                             0x0000011d   Thumb Code   322  dadd.o(.text)
+    __aeabi_dsub                             0x0000025f   Thumb Code     6  dadd.o(.text)
+    __aeabi_drsub                            0x00000265   Thumb Code     6  dadd.o(.text)
+    __aeabi_i2d                              0x0000026b   Thumb Code    34  dflti.o(.text)
+    __aeabi_ui2d                             0x0000028d   Thumb Code    26  dfltui.o(.text)
+    __aeabi_d2uiz                            0x000002a7   Thumb Code    50  dfixui.o(.text)
+    __aeabi_llsl                             0x000002d9   Thumb Code    30  llshl.o(.text)
+    _ll_shift_l                              0x000002d9   Thumb Code     0  llshl.o(.text)
+    __I$use$fp                               0x000002f7   Thumb Code     0  iusefp.o(.text)
+    __scatterload_null                       0x000002f7   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __aeabi_dmul                             0x00000301   Thumb Code   228  dmul.o(.text)
+    __aeabi_ddiv                             0x000003e5   Thumb Code   222  ddiv.o(.text)
+    __aeabi_cdcmpeq                          0x000004c5   Thumb Code     0  cdcmple.o(.text)
+    __aeabi_cdcmple                          0x000004c5   Thumb Code    48  cdcmple.o(.text)
+    __aeabi_cdrcmple                         0x000004f5   Thumb Code    48  cdrcmple.o(.text)
+    __aeabi_llsr                             0x00000525   Thumb Code    32  llushr.o(.text)
+    _ll_ushift_r                             0x00000525   Thumb Code     0  llushr.o(.text)
+    __aeabi_lasr                             0x00000545   Thumb Code    36  llsshr.o(.text)
+    _ll_sshift_r                             0x00000545   Thumb Code     0  llsshr.o(.text)
+    _double_round                            0x00000569   Thumb Code    30  depilogue.o(.text)
+    _double_epilogue                         0x00000587   Thumb Code   156  depilogue.o(.text)
+    __scatterload                            0x00000625   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x00000625   Thumb Code     0  init.o(.text)
+    ADC_IRQHandler                           0x00000649   Thumb Code    80  adc.o(i.ADC_IRQHandler)
+    ADC_Init                                 0x000006a9   Thumb Code   210  adc.o(i.ADC_Init)
+    ADC_Start                                0x00000789   Thumb Code    34  adc.o(i.ADC_Start)
+    ADC_Stop                                 0x000007b1   Thumb Code    58  adc.o(i.ADC_Stop)
+    GPIO_DIR_Write                           0x000007f1   Thumb Code    18  gpio.o(i.GPIO_DIR_Write)
+    GPIO_PIN_Read                            0x00000803   Thumb Code    10  gpio.o(i.GPIO_PIN_Read)
+    GPIO_PIN_Write                           0x0000080d   Thumb Code    18  gpio.o(i.GPIO_PIN_Write)
+    Joystick_Center_Pressed                  0x00000821   Thumb Code    20  joystick.o(i.Joystick_Center_Pressed)
+    Joystick_Init                            0x00000839   Thumb Code    54  joystick.o(i.Joystick_Init)
+    Joystick_Up_Pressed                      0x00000875   Thumb Code    20  joystick.o(i.Joystick_Up_Pressed)
+    PLL_Change_Configuration                 0x0000088d   Thumb Code    40  pll.o(i.PLL_Change_Configuration)
+    PLL_Change_Frequency                     0x000008b5   Thumb Code    32  pll.o(i.PLL_Change_Frequency)
+    PLL_Change_Source                        0x000008d9   Thumb Code    16  pll.o(i.PLL_Change_Source)
+    PLL_Check_State                          0x000008f1   Thumb Code    16  pll.o(i.PLL_Check_State)
+    PLL_Disable                              0x00000905   Thumb Code    18  pll.o(i.PLL_Disable)
+    PLL_Enable                               0x0000091d   Thumb Code    18  pll.o(i.PLL_Enable)
+    PLL_Feed                                 0x00000935   Thumb Code    18  pll.o(i.PLL_Feed)
+    PLL_Init                                 0x0000094d   Thumb Code    36  pll.o(i.PLL_Init)
+    PLL_Start                                0x00000979   Thumb Code    50  pll.o(i.PLL_Start)
+    PWM_Cycle_Rate                           0x000009b5   Thumb Code    26  pwm.o(i.PWM_Cycle_Rate)
+    PWM_Init                                 0x000009d5   Thumb Code   304  pwm.o(i.PWM_Init)
+    PWM_Write                                0x00000b15   Thumb Code   108  pwm.o(i.PWM_Write)
+    SysTick_Handler                          0x00000b85   Thumb Code     8  main.o(i.SysTick_Handler)
+    SysTick_Init                             0x00000b8d   Thumb Code    46  systemticktimer.o(i.SysTick_Init)
+    SystemCoreClockUpdate                    0x00000bc1   Thumb Code   696  system_lpc407x_8x_177x_8x.o(i.SystemCoreClockUpdate)
+    SystemInit                               0x00000e95   Thumb Code   220  system_lpc407x_8x_177x_8x.o(i.SystemInit)
+    TIMER2_IRQHandler                        0x00000f81   Thumb Code    66  ultrasonic.o(i.TIMER2_IRQHandler)
+    TIMER3_IRQHandler                        0x00000fd1   Thumb Code   162  ultrasonic.o(i.TIMER3_IRQHandler)
+    Ulrasonic_Start_Trigger                  0x0000108d   Thumb Code    38  ultrasonic.o(i.Ulrasonic_Start_Trigger)
+    Ultrasonic_Capture_Timer_Init            0x000010b9   Thumb Code   100  ultrasonic.o(i.Ultrasonic_Capture_Timer_Init)
+    Ultrasonic_Trigger_Timer_Init            0x00001129   Thumb Code   128  ultrasonic.o(i.Ultrasonic_Trigger_Timer_Init)
+    __scatterload_copy                       0x0000120d   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_zeroinit                   0x0000121b   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    backward                                 0x00001229   Thumb Code   134  main.o(i.backward)
+    calc_speed                               0x000012bd   Thumb Code    88  main.o(i.calc_speed)
+    controller                               0x00001335   Thumb Code   300  main.o(i.controller)
+    deep_power_down_on                       0x000014a5   Thumb Code    32  main.o(i.deep_power_down_on)
+    forward                                  0x000014cd   Thumb Code   132  main.o(i.forward)
+    fpu_init                                 0x0000155d   Thumb Code    62  system_lpc407x_8x_177x_8x.o(i.fpu_init)
+    init                                     0x000015ad   Thumb Code   128  main.o(i.init)
+    main                                     0x00001631   Thumb Code    12  main.o(i.main)
+    mean                                     0x0000163d   Thumb Code    70  main.o(i.mean)
+    turn_ccw                                 0x00001685   Thumb Code   106  main.o(i.turn_ccw)
+    turn_cw                                  0x000016f9   Thumb Code   108  main.o(i.turn_cw)
+    update                                   0x0000176d   Thumb Code     8  main.o(i.update)
+    update_speed                             0x00001775   Thumb Code    48  main.o(i.update_speed)
+    Region$$Table$$Base                      0x000017a8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000017c8   Number         0  anon$$obj.o(Region$$Table)
+    stop_flag                                0x10000000   Data           1  main.o(.data)
+    speed                                    0x10000008   Data           8  main.o(.data)
+    diff                                     0x10000010   Data           4  main.o(.data)
+    sign                                     0x10000014   Data           1  main.o(.data)
+    backoff                                  0x10000015   Data           1  main.o(.data)
+    led_threshold                            0x10000018   Data           4  main.o(.data)
+    counter                                  0x1000001c   Data           4  main.o(.data)
+    average_distance                         0x10000020   Data           8  main.o(.data)
+    isUltrasonicSensorTriggerEnded           0x10000028   Data           1  ultrasonic.o(.data)
+    ultrasonicSensorEdgeCount                0x10000029   Data           1  ultrasonic.o(.data)
+    temp                                     0x1000002c   Data           4  ultrasonic.o(.data)
+    ultrasonicSensorRisingTime               0x10000030   Data           4  ultrasonic.o(.data)
+    ultrasonicSensorFallingTime              0x10000034   Data           4  ultrasonic.o(.data)
+    ultrasonicSensorDuration                 0x10000038   Data           4  ultrasonic.o(.data)
+    ultrasonicSensorDistance                 0x1000003c   Data           4  ultrasonic.o(.data)
+    ADC_Left                                 0x10000040   Data           4  adc.o(.data)
+    ADC_Right                                0x10000044   Data           4  adc.o(.data)
+    ADC_Trimpot                              0x10000048   Data           4  adc.o(.data)
+    SystemCoreClock                          0x1000004c   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    PeripheralClock                          0x10000050   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    EMCClock                                 0x10000054   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    USBClock                                 0x10000058   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    distances                                0x1000005c   Data          40  main.o(.bss)
+    __initial_sp                             0x10000488   Data           0  startup_lpc407x_8x_177x_8x.o(STACK)
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x000000f9
+
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00001824, Max: 0xffffffff, ABSOLUTE)
+
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000017c8, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00000000   0x00000000   0x000000e4   Data   RO          656    RESET               startup_lpc407x_8x_177x_8x.o
+    0x000000e4   0x000000e4   0x00000000   Code   RO          706  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x000000e4   0x000000e4   0x00000004   Code   RO          725    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x000000e8   0x000000e8   0x00000004   Code   RO          728    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x000000ec   0x000000ec   0x00000000   Code   RO          730    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x000000ec   0x000000ec   0x00000000   Code   RO          732    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x000000ec   0x000000ec   0x00000008   Code   RO          733    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x000000f4   0x000000f4   0x00000000   Code   RO          735    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x000000f4   0x000000f4   0x00000000   Code   RO          737    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x000000f4   0x000000f4   0x00000004   Code   RO          726    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x000000f8   0x000000f8   0x00000024   Code   RO          658  * .text               startup_lpc407x_8x_177x_8x.o
+    0x0000011c   0x0000011c   0x0000014e   Code   RO          709    .text               mf_w.l(dadd.o)
+    0x0000026a   0x0000026a   0x00000022   Code   RO          715    .text               mf_w.l(dflti.o)
+    0x0000028c   0x0000028c   0x0000001a   Code   RO          717    .text               mf_w.l(dfltui.o)
+    0x000002a6   0x000002a6   0x00000032   Code   RO          719    .text               mf_w.l(dfixui.o)
+    0x000002d8   0x000002d8   0x0000001e   Code   RO          739    .text               mc_w.l(llshl.o)
+    0x000002f6   0x000002f6   0x00000000   Code   RO          745    .text               mc_w.l(iusefp.o)
+    0x000002f6   0x000002f6   0x00000002   Code   RO          753    i.__scatterload_null  mc_w.l(handlers.o)
+    0x000002f8   0x000002f8   0x00000004   PAD
+    0x000002fc   0x000002fc   0x00000004   Code   RO          657    .ARM.__at_0x02FC    startup_lpc407x_8x_177x_8x.o
+    0x00000300   0x00000300   0x000000e4   Code   RO          711    .text               mf_w.l(dmul.o)
+    0x000003e4   0x000003e4   0x000000de   Code   RO          713    .text               mf_w.l(ddiv.o)
+    0x000004c2   0x000004c2   0x00000002   PAD
+    0x000004c4   0x000004c4   0x00000030   Code   RO          721    .text               mf_w.l(cdcmple.o)
+    0x000004f4   0x000004f4   0x00000030   Code   RO          723    .text               mf_w.l(cdrcmple.o)
+    0x00000524   0x00000524   0x00000020   Code   RO          741    .text               mc_w.l(llushr.o)
+    0x00000544   0x00000544   0x00000024   Code   RO          743    .text               mc_w.l(llsshr.o)
+    0x00000568   0x00000568   0x000000ba   Code   RO          746    .text               mf_w.l(depilogue.o)
+    0x00000622   0x00000622   0x00000002   PAD
+    0x00000624   0x00000624   0x00000024   Code   RO          748    .text               mc_w.l(init.o)
+    0x00000648   0x00000648   0x00000060   Code   RO          569    i.ADC_IRQHandler    adc.o
+    0x000006a8   0x000006a8   0x000000e0   Code   RO          570    i.ADC_Init          adc.o
+    0x00000788   0x00000788   0x00000028   Code   RO          571    i.ADC_Start         adc.o
+    0x000007b0   0x000007b0   0x00000040   Code   RO          572    i.ADC_Stop          adc.o
+    0x000007f0   0x000007f0   0x00000012   Code   RO          216    i.GPIO_DIR_Write    gpio.o
+    0x00000802   0x00000802   0x0000000a   Code   RO          217    i.GPIO_PIN_Read     gpio.o
+    0x0000080c   0x0000080c   0x00000012   Code   RO          218    i.GPIO_PIN_Write    gpio.o
+    0x0000081e   0x0000081e   0x00000002   PAD
+    0x00000820   0x00000820   0x00000018   Code   RO          255    i.Joystick_Center_Pressed  joystick.o
+    0x00000838   0x00000838   0x0000003c   Code   RO          257    i.Joystick_Init     joystick.o
+    0x00000874   0x00000874   0x00000018   Code   RO          260    i.Joystick_Up_Pressed  joystick.o
+    0x0000088c   0x0000088c   0x00000028   Code   RO          405    i.PLL_Change_Configuration  pll.o
+    0x000008b4   0x000008b4   0x00000024   Code   RO          406    i.PLL_Change_Frequency  pll.o
+    0x000008d8   0x000008d8   0x00000018   Code   RO          407    i.PLL_Change_Source  pll.o
+    0x000008f0   0x000008f0   0x00000014   Code   RO          408    i.PLL_Check_State   pll.o
+    0x00000904   0x00000904   0x00000018   Code   RO          409    i.PLL_Disable       pll.o
+    0x0000091c   0x0000091c   0x00000018   Code   RO          410    i.PLL_Enable        pll.o
+    0x00000934   0x00000934   0x00000018   Code   RO          411    i.PLL_Feed          pll.o
+    0x0000094c   0x0000094c   0x0000002c   Code   RO          412    i.PLL_Init          pll.o
+    0x00000978   0x00000978   0x0000003c   Code   RO          413    i.PLL_Start         pll.o
+    0x000009b4   0x000009b4   0x00000020   Code   RO          174    i.PWM_Cycle_Rate    pwm.o
+    0x000009d4   0x000009d4   0x00000140   Code   RO          175    i.PWM_Init          pwm.o
+    0x00000b14   0x00000b14   0x00000070   Code   RO          176    i.PWM_Write         pwm.o
+    0x00000b84   0x00000b84   0x00000008   Code   RO            4    i.SysTick_Handler   main.o
+    0x00000b8c   0x00000b8c   0x00000034   Code   RO          626    i.SysTick_Init      systemticktimer.o
+    0x00000bc0   0x00000bc0   0x000002d4   Code   RO          667    i.SystemCoreClockUpdate  system_lpc407x_8x_177x_8x.o
+    0x00000e94   0x00000e94   0x000000ec   Code   RO          668    i.SystemInit        system_lpc407x_8x_177x_8x.o
+    0x00000f80   0x00000f80   0x00000050   Code   RO          501    i.TIMER2_IRQHandler  ultrasonic.o
+    0x00000fd0   0x00000fd0   0x000000bc   Code   RO          502    i.TIMER3_IRQHandler  ultrasonic.o
+    0x0000108c   0x0000108c   0x0000002c   Code   RO          503    i.Ulrasonic_Start_Trigger  ultrasonic.o
+    0x000010b8   0x000010b8   0x00000070   Code   RO          504    i.Ultrasonic_Capture_Timer_Init  ultrasonic.o
+    0x00001128   0x00001128   0x00000094   Code   RO          505    i.Ultrasonic_Trigger_Timer_Init  ultrasonic.o
+    0x000011bc   0x000011bc   0x0000001c   Code   RO          506    i.__NVIC_ClearPendingIRQ  ultrasonic.o
+    0x000011d8   0x000011d8   0x0000001a   Code   RO          507    i.__NVIC_EnableIRQ  ultrasonic.o
+    0x000011f2   0x000011f2   0x0000001a   Code   RO          573    i.__NVIC_EnableIRQ  adc.o
+    0x0000120c   0x0000120c   0x0000000e   Code   RO          752    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x0000121a   0x0000121a   0x0000000e   Code   RO          754    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x00001228   0x00001228   0x00000094   Code   RO            5    i.backward          main.o
+    0x000012bc   0x000012bc   0x00000078   Code   RO            6    i.calc_speed        main.o
+    0x00001334   0x00001334   0x00000170   Code   RO            7    i.controller        main.o
+    0x000014a4   0x000014a4   0x00000028   Code   RO            8    i.deep_power_down_on  main.o
+    0x000014cc   0x000014cc   0x00000090   Code   RO            9    i.forward           main.o
+    0x0000155c   0x0000155c   0x00000050   Code   RO          669    i.fpu_init          system_lpc407x_8x_177x_8x.o
+    0x000015ac   0x000015ac   0x00000084   Code   RO           10    i.init              main.o
+    0x00001630   0x00001630   0x0000000c   Code   RO           12    i.main              main.o
+    0x0000163c   0x0000163c   0x00000046   Code   RO           13    i.mean              main.o
+    0x00001682   0x00001682   0x00000002   PAD
+    0x00001684   0x00001684   0x00000074   Code   RO           15    i.turn_ccw          main.o
+    0x000016f8   0x000016f8   0x00000074   Code   RO           16    i.turn_cw           main.o
+    0x0000176c   0x0000176c   0x00000008   Code   RO           17    i.update            main.o
+    0x00001774   0x00001774   0x00000034   Code   RO           18    i.update_speed      main.o
+    0x000017a8   0x000017a8   0x00000020   Data   RO          750    Region$$Table       anon$$obj.o
+
+
+    Execution Region ER_RW (Exec base: 0x10000000, Load base: 0x000017c8, Size: 0x0000005c, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x10000000   0x000017c8   0x00000028   Data   RW           20    .data               main.o
+    0x10000028   0x000017f0   0x00000018   Data   RW          508    .data               ultrasonic.o
+    0x10000040   0x00001808   0x0000000c   Data   RW          574    .data               adc.o
+    0x1000004c   0x00001814   0x00000010   Data   RW          670    .data               system_lpc407x_8x_177x_8x.o
+
+
+    Execution Region ER_ZI (Exec base: 0x1000005c, Load base: 0x00001824, Size: 0x0000042c, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x1000005c        -       0x00000028   Zero   RW           19    .bss                main.o
+    0x10000084   0x00001824   0x00000004   PAD
+    0x10000088        -       0x00000400   Zero   RW          654    STACK               startup_lpc407x_8x_177x_8x.o
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+       450         42          0         12          0      32631   adc.o
+        46          0          0          0          0       3138   gpio.o
+       108         14          0          0          0       1592   joystick.o
+      1334        160          0         40         40      34365   main.o
+       296         52          0          0          0       4105   pll.o
+       464         34          0          0          0       1696   pwm.o
+        40         12        228          0       1024       1112   startup_lpc407x_8x_177x_8x.o
+      1040         62          0         16          0       4604   system_lpc407x_8x_177x_8x.o
+        52          6          0          0          0      30242   systemticktimer.o
+       626         84          0         24          0      34218   ultrasonic.o
+
+    ----------------------------------------------------------------------
+      4460        466        260         92       1068     147703   Object Totals
+         0          0         32          0          0          0   (incl. Generated)
+         4          0          0          0          4          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         0          0          0          0          0          0   entry.o
+         0          0          0          0          0          0   entry10a.o
+         0          0          0          0          0          0   entry11a.o
+         8          4          0          0          0          0   entry2.o
+         4          0          0          0          0          0   entry5.o
+         0          0          0          0          0          0   entry7b.o
+         0          0          0          0          0          0   entry8b.o
+         8          4          0          0          0          0   entry9a.o
+        30          0          0          0          0          0   handlers.o
+        36          8          0          0          0         68   init.o
+         0          0          0          0          0          0   iusefp.o
+        30          0          0          0          0         68   llshl.o
+        36          0          0          0          0         68   llsshr.o
+        32          0          0          0          0         68   llushr.o
+        48          0          0          0          0         68   cdcmple.o
+        48          0          0          0          0         68   cdrcmple.o
+       334          0          0          0          0        148   dadd.o
+       222          0          0          0          0        100   ddiv.o
+       186          0          0          0          0        176   depilogue.o
+        50          0          0          0          0         76   dfixui.o
+        34          0          0          0          0         76   dflti.o
+        26          0          0          0          0         76   dfltui.o
+       228          0          0          0          0         96   dmul.o
+
+    ----------------------------------------------------------------------
+      1368         16          0          0          0       1156   Library Totals
+         8          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+       184         16          0          0          0        272   mc_w.l
+      1176          0          0          0          0        884   mf_w.l
+
+    ----------------------------------------------------------------------
+      1368         16          0          0          0       1156   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+      5828        482        260         92       1068     144291   Grand Totals
+      5828        482        260         92       1068     144291   ELF Image Totals
+      5828        482        260         92          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                 6088 (   5.95kB)
+    Total RW  Size (RW Data + ZI Data)              1160 (   1.13kB)
+    Total ROM Size (Code + RO Data + RW Data)       6180 (   6.04kB)
+
+==============================================================================
+
